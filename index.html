@@ -44,14 +44,14 @@
       flex-shrink: 0;
     }
 
-    .title-row {
-      display: flex;
-      
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap:0px;
-      margin-bottom: 0.1rem;
-    }
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0px;
+  margin-bottom: 0.1rem;
+}
 
     h1 {
       font-size: 1.3rem;
@@ -62,6 +62,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+  font-size: 0.9rem;
+      padding: 0.4rem;
     }
 
     .points-diamond {
@@ -112,16 +114,18 @@
     }
 
     /* CATEGORY BUTTONS ROW - all in one row, small buttons */
-    .category-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 5px;
-      align-items: center;
-    }
+.category-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+}
 
     .cat-btn {
-      background: rgba(30, 55, 65, 0.8);
+      background:blue;
       backdrop-filter: blur(4px);
       border: 1px solid #ffbc6e80;
       padding: 5px 12px;
@@ -168,25 +172,31 @@
       margin-bottom: 0.7rem;
     }
 
-    .question-flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 0.8rem;
-      flex-wrap: wrap;
-    }
+.question-flex {
+  display: flex;
+  align-items: center;       /* vertical center */
+  justify-content: center;   /* horizontal center */
+  gap: 15px;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
 
-    .question-text {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1d4a57, #06212b);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      line-height: 1.3;
-      flex: 1;
-    }
+.question-text {
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+  text-align: center;       /* center multiline text */
+
+  font-size: 1.57rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1d4a57, #06212b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  line-height: 1.3;
+
+  flex: 1;
+}
 
     .speaker-glow {
       background: radial-gradient(circle at 30% 20%, #fbdead, #f5bc77);
@@ -321,14 +331,15 @@
 <div class="zenith-quiz">
   <div class="quiz-header">
     <div class="title-row">
-      <h1>🌏 GK QUIZ</h1>
-    <div class="name-panel">
+         <div class="name-panel">
       <label>🎋 YOUR NAME</label>
-      <input type="text" id="studentName" placeholder="Nayef" autocomplete="off"></div>
+      <input type="text" id="studentName" placeholder="Nayef" autocomplete="off"></div> </div>
+ <div class="title-row">
+
       <button class="name-btn" id="setNameBtn">🌏SAVE</button>
         <button class="name-btn" id="speakBtn">🔊SPEAK</button>
         <div class="name-btn"style="background:red;color:white;" id="pointsDisplay">🏆 0</div>
- </div>
+
     
     
   </div>
@@ -359,7 +370,7 @@
     </div>
     <div class="counter" id="counterText">0 / 0</div>
   </div>
-  <footer> Quiz App Developer | Lone Firdous | Tested By | Nayef Firdous </footer>
+  <footer>  <h1>🌏 GK QUIZ APP 🌏  Developer | Lone Firdous | Tested By | Nayef Firdous</h1> </footer>
 </div>
 
 <script>
