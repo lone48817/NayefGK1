@@ -46,15 +46,15 @@
 
     .title-row {
       display: flex;
-      justify-content: space-between;
+      
       align-items: baseline;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 0.5rem;
+      gap:0px;
+      margin-bottom: 0.1rem;
     }
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       background: linear-gradient(135deg, #FFE5B4, #FFBC6E, #FF9F4A);
       background-clip: text;
       -webkit-background-clip: text;
@@ -321,31 +321,31 @@
 <div class="zenith-quiz">
   <div class="quiz-header">
     <div class="title-row">
-      <h1>⛩️ ASIAN LUMINA 🌏</h1>
-      <div class="points-diamond" id="pointsDisplay">🏆 0</div>
-   
+      <h1>🌏 GK QUIZ</h1>
     <div class="name-panel">
       <label>🎋 YOUR NAME</label>
-      <input type="text" id="studentName" placeholder="Nayef" autocomplete="off">
-      <button class="name-btn" id="setNameBtn">✨ SAVE</button>
-        <button class="speaker-glow" id="speakBtn">🔊 SPEAK</button>
+      <input type="text" id="studentName" placeholder="Nayef" autocomplete="off"></div>
+      <button class="name-btn" id="setNameBtn">🌏SAVE</button>
+        <button class="name-btn" id="speakBtn">🔊SPEAK</button>
+        <div class="name-btn"style="background:red;color:white;" id="pointsDisplay">🏆 0</div>
  </div>
-    </div>
-    <!-- Category Buttons in one row -->
-    <div class="category-strip" id="categoryStrip">
-      <button data-cat="asia_capitals" class="cat-btn active-cat">🏯 Capitals</button>
-      <button data-cat="asia_currencies" class="cat-btn">💰 Currencies</button>
-      <button data-cat="independence" class="cat-btn">🎌 Independence Days</button>
-      <!-- extra future categories (placeholders) -->
-      <button data-cat="state_symbols" class="cat-btn">🦚 State Symbols (India)</button>
-      <button data-cat="bridges" class="cat-btn">🌉 Famous Bridges</button>
-      <button data-cat="lakes" class="cat-btn">💧 Lakes in India</button>
-    </div>
+    
+    
   </div>
 
   <div class="quiz-core">
     <div class="question-zone">
-      <div><span class="category-badge" id="categoryTag">ASIAN COUNTRIES: CAPITALS</span></div>
+      <div><span class="category-badge"style="display:none;" id="categoryTag">ASIAN COUNTRIES: CAPITALS</span></div>
+<!-- Category Buttons in one row -->
+    <div class="category-strip" id="categoryStrip">
+      <button data-cat="asia_capitals" class="cat-btn active-cat">🌏 Capitals</button>
+      <button data-cat="asia_currencies" class="cat-btn">🌏 Currencies</button>
+      <button data-cat="independence" class="cat-btn">🌏 Independence Days</button>
+      <!-- extra future categories (placeholders) -->
+      <button data-cat="state_symbols" class="cat-btn">🌏 State Symbols (India)</button>
+      <button data-cat="bridges" class="cat-btn">🌏Famous Bridges</button>
+      <button data-cat="lakes" class="cat-btn">🌏 Lakes in India</button>
+    </div>
       <div class="question-flex">
         <div class="question-text" id="questionText">Loading...</div>
       </div>
@@ -621,7 +621,7 @@
     if (newName === "") newName = "Nayef";
     studentName = newName;
     studentNameInput.value = newName;
-    speakMessage(`Hello ${studentName}, welcome to Lumina Quiz.`);
+    speakMessage(`Hello ${studentName}, welcome to GK Quiz.`);
     const q = currentQuestions[currentIdx];
     if (q) feedbackArea.innerHTML = `👋 ${studentName}, ready? Choose answer.`;
     renderOptionsGrid();
