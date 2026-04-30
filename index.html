@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>🌟 Asian Lumina | Multi-Category Quiz</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 20% 30%, #0a0f1e, #020408);
+      font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+    }
+
+    .zenith-quiz {
+      width: 100%;
+      max-width: 1300px;
+      height: 95vh;
+      max-height: 95vh;
+      background: rgba(18, 28, 38, 0.65);
+      backdrop-filter: blur(16px);
+      border-radius: 2.5rem;
+      box-shadow: 0 30px 55px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 200, 120, 0.35);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-header {
+      background: linear-gradient(115deg, rgba(8, 28, 35, 0.95), rgba(3, 18, 24, 0.98));
+      padding: 0.8rem 1.8rem;
+      border-bottom: 2px solid #ffbc6e;
+      flex-shrink: 0;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #FFE5B4, #FFBC6E, #FF9F4A);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .points-diamond {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #FFE0A3;
+      border: 1px solid #ffb347aa;
+    }
+
+    .name-panel {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+
+    .name-panel label {
+      font-weight: 600;
+      color: #ffefcf;
+      font-size: 0.85rem;
+    }
+
+    #studentName {
+      background: #fff8ec;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      width: 180px;
+      outline: none;
+    }
+
+    .name-btn {
+      background: linear-gradient(100deg, #ffb347, #ff9a2e);
+      border: none;
+      padding: 5px 16px;
+      border-radius: 40px;
+      font-weight: bold;
+      color: #1e2e36;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* CATEGORY BUTTONS ROW - all in one row, small buttons */
+    .category-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      align-items: center;
+    }
+
+    .cat-btn {
+      background: rgba(30, 55, 65, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid #ffbc6e80;
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #ffefcf;
+      cursor: pointer;
+      transition: 0.2s;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .cat-btn:hover, .cat-btn.active-cat {
+      background: #ffaa44;
+      color: #1f2e36;
+      border-color: #ffdd99;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .quiz-core {
+      flex: 1;
+      padding: 0.8rem 1.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(252, 248, 235, 0.94);
+      overflow: hidden;
+    }
+
+    .question-zone {
+      flex-shrink: 0;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: linear-gradient(120deg, #326b7c, #1d495a);
+      color: #FFF5E6;
+      font-weight: 700;
+      padding: 4px 18px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .question-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .question-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1d4a57, #06212b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .speaker-glow {
+      background: radial-gradient(circle at 30% 20%, #fbdead, #f5bc77);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 16px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
+    }
+
+    /* 2 column grid for answers */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 0.5rem 0 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .opt-card {
+      background: rgba(255, 255, 245, 0.95);
+      border: 1.5px solid #e7cfae;
+      border-radius: 60px;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opt-card:hover:not(.disabled-opt) {
+      background: #fff2e2;
+      border-color: #ffaa44;
+    }
+
+    .opt-prefix {
+      background: #e2cfb0;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 40px;
+      font-weight: 800;
+    }
+
+    .feedback-card {
+      background: #eaeee2;
+      border-radius: 1.2rem;
+      padding: 0.6rem 1rem;
+      margin: 0.3rem 0 0.5rem;
+      border-left: 6px solid #ffaa44;
+      font-weight: 500;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .feedback-correct {
+      background: linear-gradient(120deg, #d5f5e2, #c2ebd1);
+      border-left-color: #2ecc71;
+    }
+
+    .feedback-wrong {
+      background: linear-gradient(120deg, #ffe0db, #ffcec6);
+      border-left-color: #e67e22;
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-btn {
+      background: linear-gradient(130deg, #235f6e, #0f3f4b);
+      border: none;
+      padding: 7px 12px;
+      border-radius: 50px;
+      font-weight: bold;
+      color: #fff3e0;
+      cursor: pointer;
+      font-size: 0.8rem;
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: #ffaa44;
+      color: #1e2f36;
+    }
+
+    .nav-btn:disabled {
+      background: #6f8f9c;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .counter {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #476b7a;
+      flex-shrink: 0;
+    }
+
+    footer {
+      flex-shrink: 0;
+      background: #141e24dd;
+      text-align: center;
+      font-size: 0.6rem;
+      padding: 0.4rem;
+      color: #ebd7b0;
+    }
+
+    @media (max-width: 750px) {
+      .quiz-core { padding: 0.6rem 1rem; }
+      .question-text { font-size: 1.2rem; }
+      .opt-card { font-size: 0.8rem; }
+      .cat-btn { font-size: 0.6rem; padding: 3px 8px; }
+    }
+  </style>
+</head>
+<body>
+<div class="zenith-quiz">
+  <div class="quiz-header">
+    <div class="title-row">
+      <h1>⛩️ ASIAN LUMINA 🌏</h1>
+      <div class="points-diamond" id="pointsDisplay">🏆 0</div>
+    </div>
+    <div class="name-panel">
+      <label>🎋 YOUR NAME</label>
+      <input type="text" id="studentName" placeholder="Nayef" autocomplete="off">
+      <button class="name-btn" id="setNameBtn">✨ SAVE</button>
+    </div>
+    <!-- Category Buttons in one row -->
+    <div class="category-strip" id="categoryStrip">
+      <button data-cat="asia_capitals" class="cat-btn active-cat">🏯 Capitals</button>
+      <button data-cat="asia_currencies" class="cat-btn">💰 Currencies</button>
+      <button data-cat="independence" class="cat-btn">🎌 Independence Days</button>
+      <!-- extra future categories (placeholders) -->
+      <button data-cat="state_symbols" class="cat-btn">🦚 State Symbols (India)</button>
+      <button data-cat="bridges" class="cat-btn">🌉 Famous Bridges</button>
+      <button data-cat="lakes" class="cat-btn">💧 Lakes in India</button>
+    </div>
+  </div>
+
+  <div class="quiz-core">
+    <div class="question-zone">
+      <div><span class="category-badge" id="categoryTag">ASIAN COUNTRIES: CAPITALS</span></div>
+      <div class="question-flex">
+        <div class="question-text" id="questionText">Loading...</div>
+        <button class="speaker-glow" id="speakBtn">🔊 SPEAK</button>
+      </div>
+    </div>
+    <div class="options-grid" id="optionsContainer"></div>
+    <div class="feedback-card" id="feedbackArea">🌸 Choose a category & answer. Auto‑speak active.</div>
+    <div class="nav-row">
+      <button class="nav-btn" id="prevBtn" disabled>◀ PREV</button>
+      <button class="nav-btn" id="nextBtn">NEXT ▶</button>
+      <button class="nav-btn" id="resetBtn">⟳ RESET</button>
+    </div>
+    <div class="counter" id="counterText">0 / 0</div>
+  </div>
+  <footer>🔊 Auto speaks each question + personalized voice | 2‑col answers | Category quiz</footer>
+</div>
+
+<script>
+  // ======================= MASTER QUESTION BANK =======================
+  // 1. Capitals (original 15)
+  const capitalsAsia = [
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], correct: "New Delhi" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Japan?", options: ["Osaka", "Tokyo", "Kyoto", "Hiroshima"], correct: "Tokyo" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of China?", options: ["Shanghai", "Beijing", "Guangzhou", "Shenzhen"], correct: "Beijing" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Saudi Arabia?", options: ["Jeddah", "Mecca", "Riyadh", "Dammam"], correct: "Riyadh" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of United Arab Emirates?", options: ["Dubai", "Sharjah", "Abu Dhabi", "Ajman"], correct: "Abu Dhabi" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Malaysia?", options: ["Penang", "Kuala Lumpur", "Johor Bahru", "Malacca"], correct: "Kuala Lumpur" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Thailand?", options: ["Phuket", "Bangkok", "Chiang Mai", "Pattaya"], correct: "Bangkok" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of South Korea?", options: ["Busan", "Seoul", "Incheon", "Daegu"], correct: "Seoul" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Pakistan?", options: ["Lahore", "Karachi", "Islamabad", "Peshawar"], correct: "Islamabad" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Indonesia?", options: ["Bali", "Jakarta", "Surabaya", "Bandung"], correct: "Jakarta" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Philippines?", options: ["Cebu", "Manila", "Davao", "Quezon City"], correct: "Manila" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Bangladesh?", options: ["Chittagong", "Dhaka", "Sylhet", "Khulna"], correct: "Dhaka" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Sri Lanka?", options: ["Colombo", "Kandy", "Sri Jayawardenepura Kotte", "Galle"], correct: "Sri Jayawardenepura Kotte" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Nepal?", options: ["Pokhara", "Kathmandu", "Lalitpur", "Biratnagar"], correct: "Kathmandu" },
+    { category: "ASIAN COUNTRIES: CAPITALS", text: "What is the capital of Singapore?", options: ["Jurong", "Sentosa", "Singapore", "Woodlands"], correct: "Singapore" }
+  ];
+
+  // 2. Currencies (15)
+  const currenciesAsia = [
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of India?", options: ["Taka", "Rupee", "Peso", "Yen"], correct: "Rupee" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Japan?", options: ["Won", "Yen", "Yuan", "Dollar"], correct: "Yen" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of China?", options: ["Yen", "Yuan", "Won", "Baht"], correct: "Yuan" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Saudi Arabia?", options: ["Dirham", "Riyal", "Dinar", "Taka"], correct: "Riyal" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of United Arab Emirates?", options: ["Riyal", "Dinar", "Dirham", "Taka"], correct: "Dirham" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Malaysia?", options: ["Baht", "Ringgit", "Rupiah", "Peso"], correct: "Ringgit" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Thailand?", options: ["Ringgit", "Baht", "Rupiah", "Peso"], correct: "Baht" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of South Korea?", options: ["Yen", "Won", "Yuan", "Dollar"], correct: "Won" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Pakistan?", options: ["Rupee", "Taka", "Peso", "Baht"], correct: "Rupee" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Indonesia?", options: ["Peso", "Rupiah", "Taka", "Rupee"], correct: "Rupiah" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Philippines?", options: ["Peso", "Rupiah", "Taka", "Baht"], correct: "Peso" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Bangladesh?", options: ["Rupee", "Taka", "Peso", "Baht"], correct: "Taka" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Sri Lanka?", options: ["Rupee", "Taka", "Peso", "Ringgit"], correct: "Rupee" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Nepal?", options: ["Rupee", "Taka", "Peso", "Baht"], correct: "Rupee" },
+    { category: "ASIAN COUNTRIES: CURRENCIES", text: "What is the currency of Singapore?", options: ["Dollar", "Yen", "Won", "Ringgit"], correct: "Dollar" }
+  ];
+
+  // 3. Independence & Foundation Days (12 questions as provided)
+  const independenceDays = [
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "When does Afghanistan celebrate Independence Day?", options: ["July 4", "August 19", "March 26", "January 1"], correct: "August 19" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Argentina celebrates Independence Day on:", options: ["July 9", "June 17", "July 4", "August 9"], correct: "July 9" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Australia Day is celebrated on:", options: ["January 1", "January 26", "March 26", "July 1"], correct: "January 26" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Bangladesh celebrates Independence Day on:", options: ["March 26", "August 15", "July 4", "September 7"], correct: "March 26" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "When is Brazil’s Independence Day?", options: ["September 7", "July 1", "October 1", "June 17"], correct: "September 7" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Cambodia celebrates Independence Day on:", options: ["November 9", "August 9", "July 4", "October 1"], correct: "November 9" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Canada Day is celebrated on:", options: ["July 1", "July 4", "June 17", "January 1"], correct: "July 1" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "China’s National Day is on:", options: ["October 1", "August 19", "July 9", "September 7"], correct: "October 1" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Czech Republic celebrates Independence Day on:", options: ["January 1", "June 17", "August 9", "July 4"], correct: "January 1" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Iceland celebrates Independence Day on:", options: ["June 17", "July 1", "March 26", "August 19"], correct: "June 17" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "Singapore celebrates Independence Day on:", options: ["August 9", "July 9", "June 17", "October 1"], correct: "August 9" },
+    { category: "INDEPENDENCE & FOUNDATION DAYS", text: "United States Independence Day is on:", options: ["July 4", "July 1", "September 7", "January 26"], correct: "July 4" }
+  ];
+
+  // Placeholder for future categories (empty but will be extendable)
+  const stateSymbolsIndia = [{ category: "STATE SYMBOLS (INDIA)", text: "Coming soon: State symbols of India", options: ["A", "B", "C", "D"], correct: "A" }];
+  const famousBridges = [{ category: "FAMOUS BRIDGES", text: "Coming soon: Famous bridges dataset", options: ["A", "B", "C", "D"], correct: "A" }];
+  const lakesIndia = [{ category: "LAKES IN INDIA", text: "Coming soon: Lakes of India", options: ["A", "B", "C", "D"], correct: "A" }];
+
+  // Category mapping
+  const categoryMap = {
+    asia_capitals: capitalsAsia,
+    asia_currencies: currenciesAsia,
+    independence: independenceDays,
+    state_symbols: stateSymbolsIndia,
+    bridges: famousBridges,
+    lakes: lakesIndia
+  };
+
+  let currentCategory = "asia_capitals";
+  let currentQuestions = [...capitalsAsia];
+  let currentIdx = 0;
+  let points = 0;
+  let userAnswers = []; // will reinit on category change
+  let studentName = "Nayef";
+  const synth = window.speechSynthesis;
+
+  // DOM elements
+  const categoryTagSpan = document.getElementById("categoryTag");
+  const questionTextEl = document.getElementById("questionText");
+  const optionsContainer = document.getElementById("optionsContainer");
+  const feedbackArea = document.getElementById("feedbackArea");
+  const pointsDisplay = document.getElementById("pointsDisplay");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const counterText = document.getElementById("counterText");
+  const speakBtn = document.getElementById("speakBtn");
+  const studentNameInput = document.getElementById("studentName");
+  const setNameBtn = document.getElementById("setNameBtn");
+  const catButtons = document.querySelectorAll(".cat-btn");
+
+  function updatePointsUI() { pointsDisplay.innerHTML = `🏆 ${points}`; }
+  function recalcPoints() {
+    let total = 0;
+    for (let i = 0; i < userAnswers.length; i++) if (userAnswers[i]?.earned) total++;
+    points = total;
+    updatePointsUI();
+  }
+
+  function speakMessage(msg, onEnd = null) {
+    if (synth.speaking) synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(msg);
+    utterance.lang = "en-US";
+    utterance.rate = 0.9;
+    if (onEnd) utterance.onend = onEnd;
+    synth.speak(utterance);
+  }
+
+  function autoSpeakQuestion() {
+    const q = currentQuestions[currentIdx];
+    if (q) speakMessage(`${q.category}. ${q.text}`);
+  }
+
+  function speakPersonalFeedback(correct, correctAnswer) {
+    const displayName = studentName.trim() || "Nayef";
+    if (correct) speakMessage(`Excellent, ${displayName}! That is correct. +1 point.`);
+    else speakMessage(`Good try, ${displayName}. The correct answer is ${correctAnswer}. 0 points.`);
+  }
+
+  function submitAnswer(selected) {
+    const q = currentQuestions[currentIdx];
+    const isCor = (selected === q.correct);
+    userAnswers[currentIdx] = { selected, isCorrect: isCor, earned: isCor };
+    recalcPoints();
+    const nameShow = studentName.trim() || "Nayef";
+    if (isCor) {
+      feedbackArea.innerHTML = `🎉 <strong>Perfect, ${nameShow}!</strong> +1 point. “${q.correct}” is right!`;
+      feedbackArea.className = "feedback-card feedback-correct";
+    } else {
+      feedbackArea.innerHTML = `🌟 <strong>Not this time, ${nameShow}.</strong> Correct: <strong>${q.correct}</strong>. Keep shining!`;
+      feedbackArea.className = "feedback-card feedback-wrong";
+    }
+    speakPersonalFeedback(isCor, q.correct);
+    renderOptionsGrid();
+  }
+
+  function renderOptionsGrid() {
+    const q = currentQuestions[currentIdx];
+    const state = userAnswers[currentIdx];
+    const answered = state?.selected !== null;
+    optionsContainer.innerHTML = "";
+    const letters = ["A", "B", "C", "D"];
+    q.options.forEach((opt, idx) => {
+      const optDiv = document.createElement("div");
+      optDiv.className = "opt-card";
+      if (answered) optDiv.classList.add("disabled-opt");
+      const prefixSpan = document.createElement("span");
+      prefixSpan.className = "opt-prefix";
+      prefixSpan.innerText = letters[idx];
+      const textSpan = document.createElement("span");
+      textSpan.innerText = opt;
+      optDiv.appendChild(prefixSpan);
+      optDiv.appendChild(textSpan);
+      if (answered) {
+        if (opt === q.correct) optDiv.style.background = "#caf5dc";
+        if (state.selected === opt && !state.isCorrect) optDiv.style.background = "#fddfd9";
+        else if (state.selected === opt && state.isCorrect) optDiv.style.background = "#b7e9c7";
+        optDiv.style.cursor = "default";
+      } else {
+        optDiv.addEventListener("click", () => { if (userAnswers[currentIdx]?.selected === null) submitAnswer(opt); });
+        optDiv.style.cursor = "pointer";
+      }
+      optionsContainer.appendChild(optDiv);
+    });
+  }
+
+  function loadQuestion() {
+    const q = currentQuestions[currentIdx];
+    if (!q) return;
+    categoryTagSpan.innerText = q.category;
+    questionTextEl.innerText = q.text;
+    renderOptionsGrid();
+    counterText.innerText = `📖 ${currentIdx+1} / ${currentQuestions.length}`;
+    prevBtn.disabled = (currentIdx === 0);
+    nextBtn.innerText = (currentIdx === currentQuestions.length-1) ? "🏁 FINISH" : "NEXT ▶";
+    const nameNice = studentName.trim() || "Nayef";
+    const ansState = userAnswers[currentIdx];
+    if (ansState?.selected !== null) {
+      if (ansState.isCorrect) {
+        feedbackArea.innerHTML = `✅ <strong>Correct, ${nameNice}!</strong> +1 point.`;
+        feedbackArea.className = "feedback-card feedback-correct";
+      } else {
+        feedbackArea.innerHTML = `❌ <strong>Incorrect, ${nameNice}.</strong> Answer: ${q.correct}.`;
+        feedbackArea.className = "feedback-card feedback-wrong";
+      }
+    } else {
+      feedbackArea.innerHTML = `🌸 ${nameNice}, choose an answer. +1 each correct!`;
+      feedbackArea.className = "feedback-card";
+    }
+    if (synth.speaking) synth.cancel();
+    setTimeout(() => autoSpeakQuestion(), 100);
+  }
+
+  function nextQuestion() {
+    if (currentIdx < currentQuestions.length - 1) {
+      currentIdx++;
+      loadQuestion();
+    } else {
+      const finalName = studentName.trim() || "Nayef";
+      const finalMsg = `Congratulations ${finalName}! Completed ${currentQuestions[0]?.category} with score ${points}/${currentQuestions.length}. Great!`;
+      speakMessage(finalMsg);
+      alert(`🏆 ${finalMsg}`);
+      feedbackArea.innerHTML = `🎋 ${finalName}, you finished! Score: ${points}/${currentQuestions.length}. Change category or reset.`;
+    }
+  }
+
+  function prevQuestion() { if (currentIdx > 0) { currentIdx--; loadQuestion(); } }
+
+  function resetCategoryState() {
+    currentIdx = 0;
+    userAnswers = currentQuestions.map(() => ({ selected: null, isCorrect: null, earned: false }));
+    points = 0;
+    recalcPoints();
+    loadQuestion();
+  }
+
+  function switchCategory(categoryId) {
+    currentCategory = categoryId;
+    currentQuestions = [...categoryMap[categoryId]];
+    resetCategoryState();
+    // update active class on buttons
+    catButtons.forEach(btn => {
+      if (btn.dataset.cat === categoryId) btn.classList.add("active-cat");
+      else btn.classList.remove("active-cat");
+    });
+  }
+
+  function resetQuiz() {
+    if (synth.speaking) synth.cancel();
+    switchCategory(currentCategory);
+  }
+
+  function setStudentName() {
+    let newName = studentNameInput.value.trim();
+    if (newName === "") newName = "Nayef";
+    studentName = newName;
+    studentNameInput.value = newName;
+    speakMessage(`Hello ${studentName}, welcome to Lumina Quiz.`);
+    const q = currentQuestions[currentIdx];
+    if (q) feedbackArea.innerHTML = `👋 ${studentName}, ready? Choose answer.`;
+    renderOptionsGrid();
+  }
+
+  function manualSpeak() { if (currentQuestions[currentIdx]) speakMessage(`${currentQuestions[currentIdx].category}. ${currentQuestions[currentIdx].text}`); }
+
+  // Event listeners
+  nextBtn.addEventListener("click", nextQuestion);
+  prevBtn.addEventListener("click", prevQuestion);
+  resetBtn.addEventListener("click", resetQuiz);
+  speakBtn.addEventListener("click", manualSpeak);
+  setNameBtn.addEventListener("click", setStudentName);
+  studentNameInput.addEventListener("keypress", (e) => { if (e.key === "Enter") setStudentName(); });
+  catButtons.forEach(btn => {
+    btn.addEventListener("click", () => { switchCategory(btn.dataset.cat); });
+  });
+
+  // initialize
+  function init() {
+    studentNameInput.value = "Nayef";
+    studentName = "Nayef";
+    currentQuestions = [...capitalsAsia];
+    userAnswers = currentQuestions.map(() => ({ selected: null, isCorrect: null, earned: false }));
+    currentIdx = 0; points = 0;
+    updatePointsUI();
+    loadQuestion();
+  }
+  init();
+</script>
+</body>
+</html>
