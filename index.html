@@ -359,6 +359,10 @@
       <button data-cat="state_symbols" class="cat-btn">🌏 State Symbols (India)</button>
       <button data-cat="bridges" class="cat-btn">🌏Famous Bridges</button>
       <button data-cat="lakes" class="cat-btn">🌏 Lakes in India</button>
+            <button data-cat="Days" class="cat-btn">🌏 Important Days</button>
+            <button data-cat="CurrentAffairs" class="cat-btn">🌏 Current Affairs</button>
+
+
     </div>
       <div class="question-flex">
         <div class="question-text" id="questionText">Loading...</div>
@@ -455,6 +459,40 @@
   { category: "LAKES IN INDIA", text: "Nagarjuna Sagar Lake is located in:", options: ["Telangana", "Gujarat", "Kerala", "Punjab"], correct: "Telangana" },
   { category: "LAKES IN INDIA", text: "Largest inland salt lake in India is:", options: ["Chilika", "Sambhar", "Vembanad", "Pangong"], correct: "Sambhar" },
   { category: "LAKES IN INDIA", text: "Vembanad Lake is famous for:", options: ["Mining", "Snake boat races", "Desert tourism", "Snow sports"], correct: "Snake boat races" }];
+// March Important Days – MCQs
+const marchImportantDays = [
+  { category: "MARCH IMPORTANT DAYS", text: "When is World Wildlife Day celebrated?", options: ["March 1", "March 3", "March 5", "March 10"], correct: "March 3" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is International Women’s Day celebrated?", options: ["March 6", "March 7", "March 8", "March 9"], correct: "March 8" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is World Consumer Rights Day celebrated?", options: ["March 10", "March 12", "March 15", "March 18"], correct: "March 15" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is National Vaccination Day celebrated in India?", options: ["March 14", "March 15", "March 16", "March 17"], correct: "March 16" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is International Day of Happiness celebrated?", options: ["March 18", "March 19", "March 20", "March 21"], correct: "March 20" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is World Water Day celebrated?", options: ["March 20", "March 21", "March 22", "March 23"], correct: "March 22" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is World Meteorological Day celebrated?", options: ["March 21", "March 22", "March 23", "March 24"], correct: "March 23" },
+  { category: "MARCH IMPORTANT DAYS", text: "When is World Tuberculosis Day observed?", options: ["March 22", "March 23", "March 24", "March 25"], correct: "March 24" }
+];
+// Current Affairs Quiz – March 2026
+const currentAffairsMarch2026 = [
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which country did India defeat to win the ICC Men’s T20 World Cup 2026?", options: ["Australia", "England", "New Zealand", "Pakistan"], correct: "New Zealand" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Where was the T20 World Cup 2026 final played?", options: ["Mumbai", "Delhi", "Ahmedabad", "Chennai"], correct: "Ahmedabad" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which organization plans space missions like Gaganyaan?", options: ["NASA", "ISRO", "ESA", "DRDO"], correct: "ISRO" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "India signed a uranium supply deal with which country?", options: ["USA", "Canada", "Russia", "Japan"], correct: "Canada" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "India is focusing on which industry to grow to $100 billion by 2030?", options: ["Farming", "Tourism", "Semiconductor", "Textile"], correct: "Semiconductor" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which festival was celebrated in India in March 2026?", options: ["Diwali", "Holi", "Pongal", "Eid"], correct: "Holi" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "What is ISRO planning to send in space in future missions?", options: ["Cars", "Astronauts", "Ships", "Robots only"], correct: "Astronauts" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "What type of energy is India increasing to meet demand?", options: ["Solar", "Wind", "Coal", "Hydro"], correct: "Coal" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which sport helped India win a big world title?", options: ["Football", "Cricket", "Hockey", "Tennis"], correct: "Cricket" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which global issue affected fuel supply in March 2026?", options: ["Floods", "Iran-related conflict", "Earthquake", "Pandemic"], correct: "Iran-related conflict" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which organization works for peace and cooperation among countries?", options: ["FIFA", "United Nations", "NASA", "ICC"], correct: "United Nations" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which topic is widely discussed worldwide in 2026?", options: ["Old books", "Artificial Intelligence", "Toys", "Farming tools"], correct: "Artificial Intelligence" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which global problem is often discussed related to water?", options: ["Space travel", "Water shortage", "Sports", "Movies"], correct: "Water shortage" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which organization focuses on global education, science, and culture?", options: ["WHO", "UNESCO", "FIFA", "NASA"], correct: "UNESCO" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which sector is growing rapidly worldwide along with AI?", options: ["Agriculture", "Space technology", "Handwriting", "Paper making"], correct: "Space technology" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "What is a major global concern discussed in March 2026?", options: ["Climate change", "Toys", "Movies", "Games"], correct: "Climate change" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which type of energy is promoted worldwide to reduce pollution?", options: ["Coal", "Oil", "Renewable energy", "Wood"], correct: "Renewable energy" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "Which global issue affects food supply in many countries?", options: ["Sports events", "Weather and climate", "Movies", "Festivals"], correct: "Weather and climate" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "What does WHO mainly work on?", options: ["Sports", "Health", "Music", "Travel"], correct: "Health" },
+  { category: "CURRENT AFFAIRS MARCH 2026", text: "What is India’s position in childhood obesity globally?", options: ["1st", "2nd", "3rd", "5th"], correct: "2nd" }
+];
 
   // Category mapping
   const categoryMap = {
@@ -463,7 +501,9 @@
     independence: independenceDays,
     state_symbols: stateSymbolsIndia,
     bridges: famousBridges,
-    lakes: lakesIndia
+    lakes: lakesIndia,
+Days: marchImportantDays,
+CurrentAffairs:  currentAffairsMarch2026
   };
 
   let currentCategory = "asia_capitals";
